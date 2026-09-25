@@ -113,16 +113,15 @@ footer{text-align:center;border-top:1px solid #222;padding:40px 20px;color:#aaa}
   <div class="modalBox">
     <button class="close" onclick="closeModal()">×</button>
     <img id="modalImg" src="" alt="BeautyOasis product">
-    <h2 id="modalName"></h2>
-    <p>Price, size and availability are confirmed on WhatsApp.</p>
-    <a class="btn" href="https://wa.me/237652635853">ENQUIRE ON WHATSAPP</a>
-  </div>
+    <h2 id="modalName"></h2
+<div id="modalDetails"></div>                                 
+<a class="btn" href="https://wa.me/237652635853">ENQUIRE ON WHATSAPP</a></div>
 </div>
 
 <script>
 const items=[
-["IMG_2342(1).jpeg","Plain Halter Tops","halter"],
-["IMG_2123(1).jpeg","Plain Caprin Tops","caprin"],
+["IMG_2342(1).jpeg","Frost Halter-Neck Top","halter",2800,"S, M, L, XL, 2XL",23000],
+["IMG_2123(1).jpeg","Double Flip Halter-Neck Top","halter",1500,"S, M, L, XL",13500],
 ["IMG_2121(1).jpeg","Square-Neck Long-Hand Basics","square"],
 ["IMG_2090(1).jpeg","Short-Hand Basics","short"],
 ["original-image-01.jpg","Crop Tops","crop"],
@@ -195,7 +194,7 @@ function show(name,key){
   list.forEach(x=>{
     const d=document.createElement("div");
     d.className="product";
-    d.innerHTML=`<img src="./${x[0]}" alt="${x[1]}"><h3>${x[1]}</h3><p>Tap below for details.</p><button class="view">QUICK VIEW</button>`;
+    d.innerHTML=`<img src="./${x[0]}" alt="${x[1]}"><h3>${x[1]}</h3><p>${x[3] ? x[3]+" FCFA" : "Tap below for details."}</p><button class="view">QUICK VIEW</button>`;
     d.querySelector("button").onclick=()=>openModal(x);
     box.appendChild(d);
   });
@@ -211,6 +210,10 @@ function back(){
 function openModal(x){
   document.getElementById("modalImg").src="./"+x[0];
   document.getElementById("modalName").textContent=x[1];
+  document.getElementById("modalDetails").innerHTML=
+    "<strong>Price:</strong> "+x[3]+" FCFA each<br>"+
+    "<strong>Sizes:</strong> "+x[4]+"<br>"+
+    "<strong>Wholesale (10):</strong> "+x[5]+" FCFA";
   document.getElementById("modal").hidden=false;
 }
 
